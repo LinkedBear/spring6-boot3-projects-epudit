@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+
+person:
+  name: '小\t帅'
+#    |
+#      123
+#      345
+#      567
+#    >
+#      abc
+#      cde
+#      efg
+  age: 20
+  # 默认的日期格式为yyyy/MM/dd HH:mm:ss
+  birthday: 2000/01/01 10:00:00
+  # 数组/集合，以下两种方式均可
+  alias:
+    - 张三
+    - 三三来迟
+  tels: [88881234, 12345678]
+  # 对象数组/集合
+  cats:
+    - name: 咪咪
+      age: 2
+    - name: 喵喵
+      age: 3
+  # Map/嵌套对象
+  events:
+    eight: 起床
+    nine: 撸猫
+    twenty: 睡觉
+  # Map<String, Object> 对象可以直接用json形式
+  dogs:
+    wang:
+      name: 旺旺
+      age: 4
+    wuwu: {name: 呜呜, age: 5}

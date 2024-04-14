@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息编辑</title>
+</head>
+<body>
+<h3>用户信息</h3>
+<form id="data-form" method="post" th:action="@{/user/save}">
+    <input type="hidden" name="id" th:value="${user.id}">
+    
+    <label>用户名：</label>
+    <input type="text" name="username" th:value="${user.username}">
+    <br/>
+    <label>用户姓名：</label>
+    <input type="text" name="name" th:value="${user.name}">
+    <br/>
+    <label>所属部门：</label>
+    <select name="">
+        <option th:each="dept : ${deptList}" th:value="${dept.id}">[[${dept.name}]] - [[${dept.tel}]]</option>
+    </select>
+    <br/>
+    <!--
+    <label>生日：</label>
+    <input type="text" name="birthday" th:value="${user.birthday}">
+    <br/>
+    <label>头像：</label>
+    <input type="file" name="photoFile">
+    <br/>
+    -->
+    <input type="submit" value="保存用户">
+</form>
+<button onclick="window.history.go(-1)">返回</button>
+</body>
+</html>

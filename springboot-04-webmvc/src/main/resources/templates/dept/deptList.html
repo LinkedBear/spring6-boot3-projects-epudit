@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>部门列表</title>
+    <!--
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    -->
+    <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+    <script th:src="@{/js/axios.min.js}"></script>
+</head>
+
+<script>
+    function del(id) {
+        if (confirm("是否删除部门？")) {
+            window.location = "[[@{/department/delete}]]?id=" + id;
+        }
+    }
+    
+    $(function () {
+        axios.post('[[@{/department/saveJson}]]', {
+            id: 'aaa',
+            name: 'bbb',
+            tel: 'ccc'
+        }).then(function(res) {
+            alert(res);
+        });
+
+        $.ajax({
+            url: '[[@{/department/saveJson}]]',
+            type: 'post',
+            data: JSON.stringify({
+                id: 'aaa',
+                name: 'bbb',
+                tel: 'ccc'
+            }),  // 这里也可以直接写json字符串，也可以借助ES5中的JSON进行字符串序列化
+            contentType: 'application/json;charset=utf-8',
+            success: function(data) {
+                alert(data);
+            }
+        });
+    });
+</script>
+
+<body>
+<h3 th:text="#{dept.list.title}">部门列表</h3>
+<span th:text="${publicMessage}"></span>
+<div>
+    <form id="query-form" method="get" th:action="@{/department103/list}">
+        <label>部门名称：</label>
+        <input type="text" name="dept_name" value="" th:value="${name}">
+        <input type="submit" value="查询" th:value="#{dept.list.query}">
+    </form>
+</div>
+<table id="dept-table" border="1">
+    <thead>
+    <tr>
+        <th width="320px">id</th>
+        <th width="150px">名称</th>
+        <th width="150px">电话</th>
+        <th width="100px">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="dept : ${deptList}">
+            <td align="center">[[${dept.id}]]</td>
+            <td align="center">[[${dept.name}]]</td>
+            <td align="center">[[${dept.tel}]]</td>
+            <td align="center">
+                <a th:href="@{|/department/edit?id=${dept.id}|}">编辑</a>
+                <a th:href="|javascript:del('${dept.id}')|">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

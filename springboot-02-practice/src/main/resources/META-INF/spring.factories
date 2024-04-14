@@ -1,0 +1,3 @@
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+  com.linkedbear.springboot.practice.failure.ChinesePortInUseFailureAnalyzer,\
+  com.linkedbear.springboot.practice.failure.IllegalPortFailureAnalyzer

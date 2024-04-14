@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf语法</title>
+</head>
+<body>
+<div>
+    <h1>使用th:text标签动态渲染文本</h1>
+    <h1 th:text="${h1content}">静态文本</h1>
+    
+    <h2>使用th:text渲染html代码</h2>
+    <h2 th:text="${h2html}">静态html代码</h2>
+    <h2>使用th:utext渲染html代码</h2>
+    <h2 th:utext="${h2html}">静态html代码</h2>
+</div>
+<hr/>
+<div>
+    <img src="https://docs.spring.io/spring-boot/docs/current/reference/html/img/banner-logo.svg"
+         width="300" height="84" th:width="${springWidth}" th:height="${springHeight}" alt=""/>
+    <img src="https://docs.spring.io/spring-boot/docs/current/reference/html/img/banner-logo.svg"
+         width="300" height="84" th:attr="src=${dynamicAttrUrl},width=${dynamicAttrWidth}" alt=""/>
+</div>
+<hr/>
+<div>
+    <div th:object="${user}">
+        <p th:text="*{name}"></p>
+        <p th:text="*{age}"></p>
+    </div>
+    <div>
+        <p th:text="${user.name}"></p>
+        <p th:text="${user.age}"></p>
+    </div>
+</div>
+<hr/>
+<div>
+    <img src="/static/images/singleton.png" th:src="@{/images/singleton.png}"
+         width="300" height="84" alt=""/>
+</div>
+<hr/>
+<div>
+    <p th:text="${price}"></p>
+    <p>对price进行2位小数保留：<span th:text="${#numbers.formatDecimal(price, 0, 2)}"></span></p>
+    <p>对price进行6位整数位补全，并保留3位小数：<span th:text="${#numbers.formatDecimal(price, 6, 3)}"></span></p>
+    <p>对price进行2位小数保留，并格式化为金额：<span th:text="${#numbers.formatCurrency(#numbers.formatDecimal(price, 0, 2))}"></span></p>
+    <p th:text="${lowertext}"></p>
+    <p>对lowertext进行转大写：<span th:text="${#strings.toUpperCase(lowertext)}"></span></p>
+    <p>对lowertext进行截取：<span th:text="${#strings.substring(lowertext, 0, 5)}"></span></p>
+    <p>对lowertext进行长度计算：<span th:text="${#strings.length(lowertext)}"></span></p>
+    <p th:text="${nowTime}"></p>
+    <p>对nowTime进行默认格式的格式化：<span th:text="${#dates.format(nowTime)}"></span></p>
+    <p>对nowTime进行指定格式的格式化：<span th:text="${#dates.format(nowTime, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+    <p>取出nowTime的所属年份：<span th:text="${#dates.year(nowTime)}"></span></p>
+    <p>生成一个特定的日期：<span th:text="${#dates.format(#dates.create('2023', '02', '13'), 'yyyy-MM-dd')}"></span></p>
+    <p th:text="${list}"></p>
+    <p>对list进行长度计算：<span th:text="${#lists.size(list)}"></span></p>
+    <p>对list进行contains运算：<span th:text="${#lists.contains(list, 'aaa')}"></span></p>
+    <p>对list进行排序：<span th:text="${#lists.sort(list)}"></span></p>
+</div>
+<hr/>
+<div>
+    <p>使用th:if</p>
+    <p th:if="${price} > 10000">[[${lowertext}]]</p>
+    <p th:if="${price} > 15000">[[${list}]]</p>
+</div>
+<hr/>
+<div>
+    <p>使用th:each</p>
+    <ul>
+        <li th:each="item : ${list}">[[${item}]]</li>
+    </ul>
+    <p>使用th:each的循环状态</p>
+    <ul>
+        <li th:each="item,itemstatus : ${list}">
+            当前是第[[${itemstatus.index}]]个元素123456，内容：[[${item}]]
+        </li>
+    </ul>
+</div>
+<hr/>
+<div>
+    <p>使用模板片段引用</p>
+    <div th:replace="~{demo-template :: demo-template-nonclass}"></div>
+    <div th:replace="~{demo-template :: demo-template-withouterclass}"></div>
+    <div th:replace="~{demo-template :: demo-template-withinnerclass}"></div>
+</div>
+<hr/>
+</body>
+</html>

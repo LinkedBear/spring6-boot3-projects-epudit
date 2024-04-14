@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>模板片段引用示例</title>
+    
+    <style type="text/css">
+        .demo-template-withouterclass{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div th:fragment="demo-template-nonclass">
+    <h3>简单模板片段，无样式</h3>
+</div>
+
+<div th:fragment="demo-template-withouterclass">
+    <p class="demo-template-withouterclass">带有外部样式的模板片段</p>
+</div>
+
+<div th:fragment="demo-template-withinnerclass">
+    <p class="demo-template-withinnerclass">带有内部样式的模板片段</p>
+    
+    
+    <style type="text/css">
+        .demo-template-withinnerclass{
+            text-decoration: underline;
+        }
+    </style>
+</div>
+
+</body>
+</html>

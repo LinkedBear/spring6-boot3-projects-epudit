@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkedbear.springboot.mybatis.mapper.UserMapper">
+
+    <insert id="save" parameterType="User">
+        insert into tbl_user (name, tel) values (#{name}, #{tel})
+    </insert>
+
+    <select id="findAll" resultType="User">
+        select * from tbl_user
+    </select>
+
+    <select id="findAllByCondition" parameterType="map" resultType="User">
+        select * from tbl_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="ids != null">
+                and id in
+                <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <update id="updateById">
+        update tbl_user
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="tel != null and tel != ''">
+                tel = #{tel},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

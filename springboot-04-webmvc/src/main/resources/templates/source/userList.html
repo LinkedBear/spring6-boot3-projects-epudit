@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+</head>
+
+<script>
+    function del(id) {
+        if (confirm("是否删除用户？")) {
+            window.location = document.getElementById("delete-link").getAttribute("href") + "?id=" + id;
+        }
+    }
+</script>
+
+<body>
+<h3>用户列表</h3>
+<div>
+    <form id="query-form" method="get" th:action="@{/user/list}">
+        <label>用户名：</label>
+        <input type="text" name="username" value="">
+        <input type="submit" value="查询">
+    </form>
+</div>
+<table id="user-table" border="1">
+    <thead>
+    <tr>
+        <th width="320px">id</th>
+        <th width="150px">用户名</th>
+        <th width="100px">姓名</th>
+        <th width="150px">生日</th>
+        <th width="150px">头像</th>
+        <th width="150px">所属部门</th>
+        <th width="100px">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${userList}">
+            <td align="center">[[${user.id}]]</td>
+            <td align="center">[[${user.username}]]</td>
+            <td align="center">[[${user.name}]]</td>
+            <td align="center">[[${#dates.format(user.birthday, 'yyyy-MM-dd')}]]</td>
+            <td align="center"></td>
+            <td align="center">[[${user.department.name}]]</td>
+            <td align="center">
+                <a th:href="@{|/user/edit?id=${user.id}|}">编辑</a>
+                <a th:href="|javascript:del('${user.id}')|">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a id="delete-link" th:href="@{/user/delete}" style="display: none"></a>
+</body>
+</html>
