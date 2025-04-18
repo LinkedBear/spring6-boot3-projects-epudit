@@ -10,10 +10,9 @@ import java.util.Arrays;
 public class EnvironmentHolder {
     
     @Autowired
-    Environment environment;
+    private Environment environment;
     
     public void printEnvironment() {
-        System.out.println(Arrays.toString(environment.getDefaultProfiles()));
         System.out.println(environment.getProperty("jdbc.url"));
     }
 }

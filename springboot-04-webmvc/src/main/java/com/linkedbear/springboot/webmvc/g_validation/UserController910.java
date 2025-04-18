@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
-@RequestMapping("/user911")
-public class UserController911 {
+@RequestMapping("/user910")
+public class UserController910 {
     
     private List<Department> departmentList = new ArrayList<>();
     private List<User> userList = new ArrayList<>();
@@ -69,7 +69,7 @@ public class UserController911 {
             throw new RuntimeException("数据格式不正确：" + errorMessage);
         }
         System.out.println(user);
-        return "redirect:/user911/list";
+        return "redirect:/user910/list";
     }
     
 }

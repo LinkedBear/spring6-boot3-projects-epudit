@@ -1,4 +1,4 @@
-package com.linkedbear.spring.definition.d_merge.bean;
+package com.linkedbear.spring.definition.b_merge.bean;
 
 public abstract class Animal {
 

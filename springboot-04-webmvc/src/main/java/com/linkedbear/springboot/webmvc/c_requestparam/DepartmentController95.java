@@ -4,13 +4,15 @@ import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class DepartmentController95 {
@@ -25,28 +27,34 @@ public class DepartmentController95 {
         departmentList.add(dept2);
     }
     
-    @RequestMapping("/department/list")
-    public String list(Model model) {
-        model.addAttribute("deptList", this.departmentList);
+    @RequestMapping("/department95/list1")
+    public String list1(String name, Model model) {
+        Stream<Department> stream = this.departmentList.stream();
+        if (StringUtils.hasText(name)) {
+            stream = stream.filter(i -> i.getName().contains(name));
+        }
+        model.addAttribute("deptList", stream.collect(Collectors.toList()));
         return "dept/deptList";
     }
     
-    @RequestMapping("/department/list2")
-    public String list2(ModelMap modelMap) {
-        modelMap.put("deptList", this.departmentList);
+    @RequestMapping("/department95/list2")
+    public String list2(Department department, Model model) {
+        Stream<Department> stream = this.departmentList.stream();
+        if (StringUtils.hasText(department.getName())) {
+            stream = stream.filter(i -> i.getName().contains(department.getName()));
+        }
+        model.addAttribute("deptList", stream.collect(Collectors.toList()));
         return "dept/deptList";
     }
     
-    @RequestMapping("/department/list3")
-    public String list3(HttpServletRequest request) {
-        request.setAttribute("deptList", this.departmentList);
+    @RequestMapping("/department95/list3")
+    public String list3(@RequestParam(value = "dept_name", required = false, defaultValue = "") String name, Model model) {
+        Stream<Department> stream = this.departmentList.stream();
+        if (StringUtils.hasText(name)) {
+            stream = stream.filter(i -> i.getName().contains(name));
+        }
+        model.addAttribute("deptList", stream.collect(Collectors.toList()));
+        model.addAttribute("name", name);
         return "dept/deptList";
-    }
-    
-    @RequestMapping("/department/list4")
-    public ModelAndView list4(ModelAndView mav) {
-        mav.addObject("deptList", this.departmentList);
-        mav.setViewName("dept/deptList");
-        return mav;
     }
 }

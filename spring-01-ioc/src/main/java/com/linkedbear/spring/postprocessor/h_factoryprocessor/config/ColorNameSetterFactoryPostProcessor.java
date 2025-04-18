@@ -18,9 +18,11 @@ public class ColorNameSetterFactoryPostProcessor implements BeanFactoryPostProce
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         Stream.of(beanFactory.getBeanDefinitionNames()).forEach(beanName -> {
             BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanName);
-            if (StringUtils.hasText(beanDefinition.getBeanClassName())) {
-                if (ClassUtils.resolveClassName(beanDefinition.getBeanClassName(), this.getClass().getClassLoader())
-                        .getSuperclass().equals(Color.class)) {
+            String beanClassName = beanDefinition.getBeanClassName();
+            if (StringUtils.hasText(beanClassName)) {
+                ClassLoader classLoader = this.getClass().getClassLoader();
+                Class<?> superclass = ClassUtils.resolveClassName(beanClassName, classLoader).getSuperclass();
+                if (superclass.equals(Color.class)) {
                     System.out.println("Color definition name setting ...... " + beanName);
                     beanDefinition.getPropertyValues().add("name", beanName);
                 }

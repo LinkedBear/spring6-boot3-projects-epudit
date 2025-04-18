@@ -11,7 +11,7 @@ public class BeanFactory {
                     .getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("DemoService instantiation error, cause: " + e.getMessage());
+            throw new RuntimeException("DemoService初始化失败：" + e.getMessage());
         }
     }
     
@@ -21,7 +21,7 @@ public class BeanFactory {
                     .getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("DemoDao instantiation error, cause: " + e.getMessage());
+            throw new RuntimeException("DemoDao初始化失败：" + e.getMessage());
         }
     }
     

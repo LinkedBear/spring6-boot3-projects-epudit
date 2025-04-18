@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class EnvironmentHolder {
     
     @Autowired
-    Environment environment;
+    private Environment environment;
     
     public void printEnvironment() {
         System.out.println(environment);

@@ -12,7 +12,7 @@ public class BallFactoryInstantiationProcessor implements InstantiationAwareBean
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
         if ("ball".equals(beanName)) {
             Ball ball = new Ball();
-            ball.setId("工厂球~");
+            ball.setId("工厂球");
             return ball;
         }
         return null;
@@ -28,7 +28,7 @@ public class BallFactoryInstantiationProcessor implements InstantiationAwareBean
             throws BeansException {
         if ("ball2".equals(beanName)) {
             MutablePropertyValues values = new MutablePropertyValues(pvs);
-            values.addPropertyValue("id", "拦截球~");
+            values.addPropertyValue("id", "拦截球");
             return values;
         }
         return null;

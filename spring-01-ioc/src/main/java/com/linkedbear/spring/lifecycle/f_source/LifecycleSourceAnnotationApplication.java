@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class LifecycleSourceAnnotationApplication {
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(LifecycleSourceConfiguration.class);
         ctx.register(LifecycleNameReadPostProcessor.class);

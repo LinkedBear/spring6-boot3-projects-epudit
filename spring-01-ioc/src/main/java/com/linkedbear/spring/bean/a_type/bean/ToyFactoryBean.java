@@ -11,15 +11,12 @@ public class ToyFactoryBean implements FactoryBean<Toy> {
     private Child child;
     
     @Override
-    public Toy getObject() throws Exception {
-        switch (child.getWantToy()) {
-            case "ball":
-                return new Ball("ball");
-            case "car":
-                return new Car("car");
-            default:
-                return null;
-        }
+    public Toy getObject() {
+        return switch (child.getWantToy()) {
+            case "ball" -> new Ball("ball");
+            case "car" -> new Car("car");
+            default -> null;
+        };
     }
     
     @Override

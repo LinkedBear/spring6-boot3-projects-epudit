@@ -1,6 +1,6 @@
-package com.linkedbear.spring.definition.d_merge;
+package com.linkedbear.spring.definition.b_merge;
 
-import com.linkedbear.spring.definition.d_merge.bean.Cat;
+import com.linkedbear.spring.definition.b_merge.bean.Cat;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

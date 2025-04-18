@@ -19,7 +19,7 @@
             for (var i = 0; i < selectedIds.length; i++) {
                 ids.push(selectedIds[i].value);
             }
-            // $.post("[[@{/user911/batchDelete}]]", {ids: ids}, function(data) {
+            // $.post("[[@{/user910/batchDelete}]]", {ids: ids}, function(data) {
             //     alert(data)
             // });
             $.post("http://localhost:8081/user104/batchDelete", {ids: ids}, function(data) {

@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class LifecycleSourceXmlApplication {
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
         ctx.setConfigLocation("lifecycle/bean-source.xml");
     

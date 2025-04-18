@@ -23,7 +23,7 @@ public class Person implements InitializingBean, DisposableBean, Lifecycle {
     }
     
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         System.out.println("Person InitializingBean run ......");
     }
     
@@ -37,7 +37,7 @@ public class Person implements InitializingBean, DisposableBean, Lifecycle {
     }
     
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         System.out.println("Person DisposableBean run ......");
     }
     

@@ -12,10 +12,10 @@ public class BeanFactory {
         properties = new Properties();
         try {
             // 必须使用类加载器读取resource文件夹下的配置文件
-            properties.load(BeanFactory.class.getClassLoader().getResourceAsStream("factory.properties"));
+            properties.load(BeanFactory.class.getResourceAsStream("factory.properties"));
         } catch (IOException e) {
             // BeanFactory类的静态初始化都失败了，那后续也没有必要继续执行了
-            throw new ExceptionInInitializerError("BeanFactory initialize error, cause: " + e.getMessage());
+            throw new ExceptionInInitializerError("BeanFactory初始化失败" + e.getMessage());
         }
     }
     

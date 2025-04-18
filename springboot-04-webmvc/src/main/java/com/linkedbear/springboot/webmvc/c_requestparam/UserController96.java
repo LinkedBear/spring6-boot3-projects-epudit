@@ -43,7 +43,7 @@ public class UserController96 {
         userList.add(user3);
     }
     
-    @RequestMapping("/user96/list")
+    @RequestMapping("/user95/list")
     public String list(String username, Model model) {
         Stream<User> stream = this.userList.stream();
         if (StringUtils.hasText(username)) {
@@ -53,33 +53,33 @@ public class UserController96 {
         return "user/userList";
     }
     
-    @RequestMapping("/user96/edit")
+    @RequestMapping("/user95/edit")
     public String edit(String id, Model model) {
         model.addAttribute("user", this.userList.stream().filter(i -> i.getId().equals(id)).findAny().orElse(null));
         model.addAttribute("deptList", this.departmentList);
         return "user/userInfo";
     }
     
-    @RequestMapping(value = "/user96/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/user95/save", method = RequestMethod.POST)
     public String save(User user) {
         System.out.println(user);
-        return "redirect:/user96/list";
+        return "redirect:/user95/list";
     }
     
-    @RequestMapping("/user96/batchDelete")
+    @RequestMapping("/user95/batchDelete")
     @ResponseBody
     public String batchDelete(@RequestParam("ids[]") String[] ids) {
         System.out.println(Arrays.toString(ids));
         return "success";
     }
     
-    @RequestMapping("/user96/batchUpdate")
+    @RequestMapping("/user95/batchUpdate")
     public String batchUpdate(UsersVO vo) {
         System.out.println(Arrays.toString(vo.getUsers()));
-        return "redirect:/user96/list";
+        return "redirect:/user95/list";
     }
     
-    @GetMapping("/user96/get")
+    @GetMapping("/user95/get")
     @ResponseBody
     public User get() {
         return userList.get(0);

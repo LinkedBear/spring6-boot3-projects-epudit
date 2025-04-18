@@ -1,6 +1,6 @@
-package com.linkedbear.spring.definition.b_registry.register;
+package com.linkedbear.spring.definition.c_registry.register;
 
-import com.linkedbear.spring.definition.b_registry.bean.Person;
+import com.linkedbear.spring.definition.c_registry.bean.Person;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;

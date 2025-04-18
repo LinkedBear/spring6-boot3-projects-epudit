@@ -1,7 +1,7 @@
-package com.linkedbear.spring.definition.b_registry;
+package com.linkedbear.spring.definition.c_registry;
 
-import com.linkedbear.spring.definition.b_registry.bean.Person;
-import com.linkedbear.spring.definition.b_registry.config.BeanDefinitionRegistryConfiguration;
+import com.linkedbear.spring.definition.c_registry.bean.Person;
+import com.linkedbear.spring.definition.c_registry.config.BeanDefinitionRegistryConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class BeanDefinitionRegistryApplication {

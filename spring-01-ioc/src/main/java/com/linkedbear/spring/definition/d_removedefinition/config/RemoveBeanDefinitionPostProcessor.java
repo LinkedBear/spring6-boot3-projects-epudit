@@ -1,6 +1,6 @@
-package com.linkedbear.spring.definition.c_removedefinition.config;
+package com.linkedbear.spring.definition.d_removedefinition.config;
 
-import com.linkedbear.spring.definition.c_removedefinition.bean.Person;
+import com.linkedbear.spring.definition.d_removedefinition.bean.Person;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -20,9 +20,9 @@ public class RemoveBeanDefinitionPostProcessor implements BeanFactoryPostProcess
             // 判断BeanDefinition对应的Bean是否为Person类型
             BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanDefinitionName);
             if (Person.class.getName().equals(beanDefinition.getBeanClassName())) {
-                // 判断Person的性别是否为male
-                TypedStringValue sex = (TypedStringValue) beanDefinition.getPropertyValues().get("sex");
-                if ("male".equals(sex.getValue())) {
+                // 判断Person的年龄是否大于等于18，小于18的会被移除
+                TypedStringValue age = (TypedStringValue) beanDefinition.getPropertyValues().get("age");
+                if (Integer.parseInt(age.getValue()) < 18) {
                     // 移除BeanDefinition
                     registry.removeBeanDefinition(beanDefinitionName);
                 }

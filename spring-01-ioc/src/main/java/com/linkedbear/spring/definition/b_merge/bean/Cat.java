@@ -1,6 +1,6 @@
-package com.linkedbear.spring.definition.b_registry.bean;
+package com.linkedbear.spring.definition.b_merge.bean;
 
-public class Person {
+public class Cat extends Animal {
     
     private String name;
     
@@ -14,6 +14,6 @@ public class Person {
     
     @Override
     public String toString() {
-        return "Person{" + "name='" + name + '\'' + '}';
+        return "Cat{" + "name=" + name + ", person='" + getPerson() + '\'' + "}";
     }
 }
